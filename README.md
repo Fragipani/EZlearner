@@ -1,2 +1,3 @@
 # EZlearner
-Learn ez 
+Learn ez
+Wow, das ist ja wirklich richtig ez!
