@@ -16,6 +16,6 @@ text = raw_text[start_bookmark:end_bookmark]
 
 #Saetze tokenizieren
 sentence_tokens = nltk.sent_tokenize(text)
-
+#print(sentence_tokens)
 # warum ist die Liste sentence_tokens leer? In der Console nicht...
 # Umgang mit Umlauten
