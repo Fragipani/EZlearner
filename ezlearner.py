@@ -4,9 +4,13 @@ import urllib.request, nltk
 
 
 # Import zufaellig ausgesuchter DE Text
-url = "http://www.gutenberg.org/cache/epub/24377/pg24377.txt"
-response = urllib.request.urlopen(url)
-raw_text = response.read().decode('utf8')
+#url = "http://www.gutenberg.org/cache/epub/24377/pg24377.txt"
+#response = urllib.request.urlopen(url)
+#raw_text = response.read().decode('UTF-8')
+
+#Import from txt file
+f = open("ressources/reiseberichtIndien.txt")
+raw_text = f.read()
 print(raw_text)
 
 #Buchtext definieren.
