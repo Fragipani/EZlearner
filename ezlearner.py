@@ -14,12 +14,12 @@ raw_text = f.read()
 print(raw_text)
 
 #Buchtext definieren.
-start_bookmark = raw_text.find("Erstes Kapitel")
-end_bookmark = raw_text.rfind("Im Verlag von R")
-text = raw_text[start_bookmark:end_bookmark]
+#start_bookmark = raw_text.find("Erstes Kapitel")
+#end_bookmark = raw_text.rfind("Im Verlag von R")
+#text = raw_text[start_bookmark:end_bookmark]
 
 #Saetze tokenizieren
-sentence_tokens = nltk.sent_tokenize(text)
+#sentence_tokens = nltk.sent_tokenize(text)
 #print(sentence_tokens)
 # warum ist die Liste sentence_tokens leer? In der Console nicht...
 # Umgang mit Umlauten

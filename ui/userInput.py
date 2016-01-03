@@ -14,40 +14,36 @@ start_bookmark = raw_text.find("Erstes Kapitel")
 end_bookmark = raw_text.rfind("Im Verlag von R")
 text = raw_text[start_bookmark:end_bookmark]
 
-
+# Tokenization des gesamten Textes
 tokens = nltk.word_tokenize(text, language='german')
 sentence_tokens = nltk.sent_tokenize(text, language='german')
 
+# Auswahl eines zufaelligen Satzes aus den Sentence_Tokens
 randSentence = sentence_tokens[randint(0,len(sentence_tokens))]
-
 randSentenceTokens = nltk.word_tokenize(randSentence, language='german')
 
-
-
-
+# Auswahl des zu trainierenden Wortes
 randNumberTokens = randint(0,len(randSentenceTokens))
 cutWord = randSentenceTokens[randNumberTokens]
 randSentenceTokens[randNumberTokens]='________'
 
-
-
+# Ausgabe des Satzes mit Platzhalter
 newSent ="".join([" "+i if not i.startswith("'") and i not in string.punctuation else i for i in randSentenceTokens]).strip()
 print("Satz: " + newSent)
-
 #print("Lueckenwort: " + cutWord)
 
+
+# Ermitteln aehnlicher Woerter mittels nltk-contextindex
 text = nltk.Text(word.lower() for word in tokens)
-
-
-
 idx = nltk.text.ContextIndex([word.lower( ) for word in tokens])
-
 save = idx.similar_words(cutWord, n=3)
 save.append(cutWord)
 
+# Ausgabe moeglicher Altnerativwoerter
 print("Moegliche Woerter:")
 print(save)
 
+# Input des Nutzers und Ergebnisauswertung
 response = input("Fehlendes Wort eingeben: ")
 
 if response == cutWord:
