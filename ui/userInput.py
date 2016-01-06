@@ -20,6 +20,7 @@ raw_text = f.read()
 #print(raw_text)
 
 #Buchtext definieren.
+#Buchtext definieren.
 start_bookmark = raw_text.find("Erstes Kapitel")
 end_bookmark = raw_text.rfind("Im Verlag von R")
 text = raw_text[start_bookmark:end_bookmark]
