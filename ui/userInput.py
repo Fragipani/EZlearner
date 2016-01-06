@@ -1,7 +1,17 @@
 
-import nltk, string
+import nltk, string, os
 
 from random import randint
+from nltk.tag.stanford import StanfordPOSTagger
+
+os.environ['CLASSPATH'] = '../ressources/standforPOS/stanford-postagger.jar'
+os.environ['STANFORD_MODELS'] = '../ressources/standforPOS/models'
+
+st = StanfordPOSTagger('german-hgc.tagger')
+
+#tagset: http://www.coli.uni-saarland.de/projects/sfb378/negra-corpus/stts.asc
+
+
 
 #Import from txt file
 
@@ -24,6 +34,7 @@ randSentenceTokens = nltk.word_tokenize(randSentence, language='german')
 
 
 
+print(st.tag(randSentence.split()))
 
 randNumberTokens = randint(0,len(randSentenceTokens))
 cutWord = randSentenceTokens[randNumberTokens]
