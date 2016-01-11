@@ -17,6 +17,7 @@ st = StanfordPOSTagger('german-hgc.tagger')
 
 ##############################
 # Text importieren
+##############################
 
 f = open("../ressources/reiseberichtIndien.txt")
 raw_text = f.read()
@@ -28,28 +29,47 @@ text = raw_text[start_bookmark:end_bookmark]
 
 ##############################
 #  Tokenization des Textes
+##############################
 
 tokens = nltk.word_tokenize(text, language='german')
 sentence_tokens = nltk.sent_tokenize(text, language='german')
 
-# Auswahl eines zufaelligen Satzes aus den Sentence_Tokens
+# Auswahl eines zufälligen Übungssatzes
 randSentence = sentence_tokens[randint(0,len(sentence_tokens))]
 randSentenceTokens = nltk.word_tokenize(randSentence, language='german')
 
-# Auswahl des zu trainierenden Wortes
+# Auswahl des zu trainierenden Worttyps
 pos_sentence = st.tag(randSentence.split())
-for item1 in pos_sentence:
- print(item1[1])
-response = input("Welche Wortart wollen Sie trainieren?")
+response = input("Welche Wortart wollen Sie trainieren? (Verb, Nomen, Adjektiv, Artikel)")
+if response == "Verb":
+ picked_wordtype= "VAFIN"
+elif response == "Nomen":
+ picked_wordtype = "NN"
+elif response == "Adjektiv":
+ picked_wordtype = "ADJA"
+elif response == "Artikel":
+ picked_wordtype = "ART"
+else:
+ print("Nicht zugelassen")
+
+# Ausgewählten Worttyp im Übungssatz finden
+temp = list()
+word_changed = None
 for index, item1 in enumerate(pos_sentence):
- if response == item1[1]: picked_wordtype = index
+ if (picked_wordtype == item1[1] and word_changed == None):
+  index_of_picked_wordtype = index
+  cutWord = item1[0]
+  temp.append("____")
+  word_changed = True
+ else: temp.insert(index, item1[0])
 
 #randNumberTokens = randint(0,len(randSentenceTokens))
-cutWord = randSentenceTokens[picked_wordtype]
-randSentenceTokens[picked_wordtype]='________'
+#cutWord = randSentenceTokens[index_of_picked_wordtype]
+#randSentenceTokens[index_of_picked_wordtype]='________'
+
 
 # Ausgabe des Satzes mit Platzhalter
-newSent ="".join([" "+i if not i.startswith("'") and i not in string.punctuation else i for i in randSentenceTokens]).strip()
+newSent ="".join([" "+i if not i.startswith("'") and i not in string.punctuation else i for i in temp]).strip()
 print("Satz: " + newSent)
 #print("Lueckenwort: " + cutWord)
 
