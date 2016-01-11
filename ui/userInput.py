@@ -1,3 +1,5 @@
+# /usr/local/bin/python
+# coding: latin-1
 
 import nltk, string, os
 
@@ -13,19 +15,20 @@ st = StanfordPOSTagger('german-hgc.tagger')
 
 
 
-#Import from txt file
+##############################
+# Text importieren
 
 f = open("../ressources/reiseberichtIndien.txt")
 raw_text = f.read()
-#print(raw_text)
-
-#Buchtext definieren.
-#Buchtext definieren.
 start_bookmark = raw_text.find("Erstes Kapitel")
 end_bookmark = raw_text.rfind("Im Verlag von R")
 text = raw_text[start_bookmark:end_bookmark]
 
-# Tokenization des gesamten Textes
+
+
+##############################
+#  Tokenization des Textes
+
 tokens = nltk.word_tokenize(text, language='german')
 sentence_tokens = nltk.sent_tokenize(text, language='german')
 
@@ -34,13 +37,16 @@ randSentence = sentence_tokens[randint(0,len(sentence_tokens))]
 randSentenceTokens = nltk.word_tokenize(randSentence, language='german')
 
 # Auswahl des zu trainierenden Wortes
+pos_sentence = st.tag(randSentence.split())
+for item1 in pos_sentence:
+ print(item1[1])
+response = input("Welche Wortart wollen Sie trainieren?")
+for index, item1 in enumerate(pos_sentence):
+ if response == item1[1]: picked_wordtype = index
 
-
-print(st.tag(randSentence.split()))
-
-randNumberTokens = randint(0,len(randSentenceTokens))
-cutWord = randSentenceTokens[randNumberTokens]
-randSentenceTokens[randNumberTokens]='________'
+#randNumberTokens = randint(0,len(randSentenceTokens))
+cutWord = randSentenceTokens[picked_wordtype]
+randSentenceTokens[picked_wordtype]='________'
 
 # Ausgabe des Satzes mit Platzhalter
 newSent ="".join([" "+i if not i.startswith("'") and i not in string.punctuation else i for i in randSentenceTokens]).strip()
