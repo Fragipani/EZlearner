@@ -1,11 +1,6 @@
 __author__ = 'Rayk'
 
 
-list = [['vegas','London'],['US','UK']]
-
-
-for item1 in list:
-    print (item1[1])
 
 #Import from txt file
 #f = open("../ressources/reiseberichtIndien.txt")
