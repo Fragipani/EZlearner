@@ -4,4 +4,7 @@ from Difficulty.TextDiff import CalcTextDiff
 
 word = str
 word = "Xylophon"
-CalcWordDiff(word)
+
+
+WordDiff = CalcWordDiff(word)
+print (WordDiff)
