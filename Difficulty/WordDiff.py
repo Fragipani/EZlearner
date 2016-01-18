@@ -58,6 +58,27 @@ def word_length (input_word):
     return calc_value
 
 
+def getNumberOfdifferentLetters(input_word):
+    letterlist=""
+    for i in range(0, len(input_word)):
+        if not(input_word[i] in letterlist):
+            letterlist+=input_word[i]
+    return len(letterlist)
+
+def getNumberOfRepeatingLetters(input_word):
+    count=0
+    for i in range(0, len(input_word)):
+        if(i!=0):
+            if(input_word[i-1]==input_word[i]):
+                count+=1
+    return count
+
+
+
 
 #test
 print("overall Score: " + str(CalcWordDiff("Xylophon")))
+
+print("# different letters: " + str(getNumberOfdifferentLetters("test")))
+
+print("# repeating letters: " + str(getNumberOfRepeatingLetters("tesst")))
