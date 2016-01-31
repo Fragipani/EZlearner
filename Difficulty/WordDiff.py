@@ -151,3 +151,4 @@ print("overall Score: " + str(CalcWordDiff("Xylophon")))
 # print("Difficulty: rare letters: " + str(getNumberOfRareLetters("Xylophon")))
 #
 # print("Difficulty: ratio vowels/consonants: " + str(getRatioVowelsConsonants("Xylophon")))
+
