@@ -15,3 +15,8 @@ old_tokens.extend(new_tokens)
 #Save newly created token list
 pickle.dump(new_tokens ,open("../ressources/tokens.pickle", "wb"))
 pickle.dump(sentence_tokens ,open("../ressources/sentenceTokens.pickle", "wb"))
+
+#Do frequency distribution of current token list
+freqdistr = nltk.FreqDist(new_tokens)
+pickle.dump(freqdistr, open("../ressources/freqdistr.pickle", "wb"))
+

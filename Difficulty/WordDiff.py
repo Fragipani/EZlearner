@@ -28,7 +28,7 @@ def letter_combination (input_word):
         occurance = occurance + input_word.count(combination)
 
     #weighted_score
-    ws = occurance / wl
+    ws = occurance / len(input_word)
     if ws > 0.4:
         calc_value = 5
     elif ws > 0.3:
@@ -137,13 +137,31 @@ def getRatioVowelsConsonants(input_word):
 
     return calc_value
 
+def FreqDistrofWordinCorpus (input_word):
+    rank = 0
+    freqdistr = pickle.load(open("../ressources/freqdistr.pickle", "rb"))
+    for index, item in enumerate(freqdistr.most_common()):
+        if item[0] == input_word:
+            rank = index+1
+
+    if rank > (len(freqdistr)*0.8):
+        calc_value = 5
+    elif rank > (len(freqdistr)*0.6):
+        calc_value = 4
+    elif rank > (len(freqdistr)*0.4):
+        calc_value = 3
+    elif rank > (len(freqdistr)*0.2):
+        calc_value = 2
+    else:
+        calc_value = 1
+    return calc_value
 
 
 
 
 #test
-print("overall Score: " + str(CalcWordDiff("Xylophon")))
-
+#print("overall Score: " + str(CalcWordDiff("Xylophon")))
+#
 # print("Difficulty: different letters: " + str(getNumberOfDifferentLetters("Xylophon")))
 #
 # print("Difficulty: repeating letters: " + str(getNumberOfRepeatingLetters("Xylophonn")))
@@ -151,4 +169,5 @@ print("overall Score: " + str(CalcWordDiff("Xylophon")))
 # print("Difficulty: rare letters: " + str(getNumberOfRareLetters("Xylophon")))
 #
 # print("Difficulty: ratio vowels/consonants: " + str(getRatioVowelsConsonants("Xylophon")))
-
+#
+#print("Difficulty: # word in corpus: " + str(FreqDistrofWordinCorpus("und")))
