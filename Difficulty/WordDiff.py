@@ -76,6 +76,8 @@ def getNumberOfRepeatingLetters(input_word):
 
 
 
+
+
 #test
 print("overall Score: " + str(CalcWordDiff("Xylophon")))
 
