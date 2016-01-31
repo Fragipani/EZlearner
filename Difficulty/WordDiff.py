@@ -58,12 +58,24 @@ def word_length (input_word):
     return calc_value
 
 
-def getNumberOfdifferentLetters(input_word):
+def getNumberOfDifferentLetters(input_word):
     letterlist=""
     for i in range(0, len(input_word)):
         if not(input_word[i] in letterlist):
             letterlist+=input_word[i]
-    return len(letterlist)
+
+    if len(letterlist) == len(input_word):
+        calc_value = 5
+    elif len(letterlist) >= len(input_word)*0.8:
+        calc_value = 4
+    elif len(letterlist) >= len(input_word)*0.6:
+        calc_value = 3
+    elif len(letterlist) >= len(input_word)*0.4:
+        calc_value = 2
+    elif len(letterlist) >= len(input_word)*0.2:
+        calc_value = 1
+
+    return calc_value
 
 def getNumberOfRepeatingLetters(input_word):
     count=0
@@ -71,14 +83,69 @@ def getNumberOfRepeatingLetters(input_word):
         if(i!=0):
             if(input_word[i-1]==input_word[i]):
                 count+=1
-    return count
+    if count >= 5:
+        calc_value = 5
+    elif count >= 3:
+        calc_value = 3
+    elif count >= 1:
+        calc_value = 2
+    elif count == 0:
+        calc_value = 1
 
+    return calc_value
+
+def getNumberOfRareLetters(input_word):
+    count = 0
+    rareLetters = ['q', 'x', 'y', 'j', 'ß', 'v', 'p', 'z']
+
+    for rareLetter in rareLetters:
+        count += input_word.count(rareLetter)
+
+    if count >= 4:
+        calc_value = 5
+    elif count >= 3:
+        calc_value = 4
+    elif count >= 2:
+        calc_value = 3
+    elif count == 1:
+        calc_value = 2
+    elif count == 0:
+        calc_value = 1
+
+    return calc_value
+
+def getRatioVowelsConsonants(input_word):
+    countVowels = 0
+    vowels = ['a', 'e', 'i', 'o', 'u']
+    for vowel in vowels:
+        countVowels += input_word.count(vowel)
+
+    countConsonants = len(input_word)-countVowels
+
+    ratio = countVowels/len(input_word)
+
+    if ratio == 0 or ratio == 1:
+        calc_value = 5
+    elif ratio > 0.8:
+        calc_value = 4
+    elif ratio > 0.6:
+        calc_value = 3
+    elif ratio > 0.4:
+        calc_value = 2
+    elif ratio > 0 and ratio <= 0.4:
+        calc_value = 1
+
+    return calc_value
 
 
 
 #test
 print("overall Score: " + str(CalcWordDiff("Xylophon")))
 
-print("# different letters: " + str(getNumberOfdifferentLetters("test")))
+print("Difficulty: different letters: " + str(getNumberOfDifferentLetters("Xylophon")))
 
-print("# repeating letters: " + str(getNumberOfRepeatingLetters("tesst")))
+print("Difficulty: repeating letters: " + str(getNumberOfRepeatingLetters("Xylophonn")))
+
+print("Difficulty: rare letters: " + str(getNumberOfRareLetters("Xylophon")))
+
+print("Difficulty: ratio vowels/consonants: " + str(getRatioVowelsConsonants("Xylophon")))

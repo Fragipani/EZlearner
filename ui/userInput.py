@@ -40,6 +40,7 @@ randSentenceTokens = nltk.word_tokenize(randSentence, language='german')
 
 # Auswahl des zu trainierenden Worttyps
 pos_sentence = st.tag(randSentence.split())
+print(pos_sentence)
 response = input("Welche Wortart wollen Sie trainieren? (Verb, Nomen, Adjektiv, Artikel)")
 if response == "Verb":
  picked_wordtype= "VAFIN"
