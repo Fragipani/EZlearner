@@ -1,8 +1,9 @@
 import nltk, pickle
 
 #Import from txt file
-f = open("../ressources/tisch.txt")
+f = open("../ressources/reiseberichtIndien.txt")
 raw_text = f.read()
+
 
 # create new tokens from import and append these tokens to existing token list
 raw_tokens = nltk.word_tokenize(raw_text, language='german')
