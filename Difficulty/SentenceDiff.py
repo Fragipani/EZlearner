@@ -1,5 +1,6 @@
-import nltk, pickle, os
+import nltk, pickle, os, statistics
 from random import randint
+from Difficulty.WordDiff import CalcWordDiff
 from nltk.tag.stanford import StanfordPOSTagger
 
 os.environ['CLASSPATH'] = '../ressources/standforPOS/stanford-postagger.jar'
@@ -15,10 +16,21 @@ def getSentenceLength(sentenceTokens):
     return len(sentenceTokens)
 
 def getPosRank(sentence):
-
+# 
     pos_sentence = st.tag(sentence)
 
     return pos_sentence
+
+def getWordDifficulty (sentenceTokens):
+    WordDiffList = list()
+    for item in sentenceTokens:
+        WordDiffList.append(CalcWordDiff(item))
+    sum(WordDiffList)
+    statistics.mean(WordDiffList)
+    statistics.pstdev(WordDiffList)
+    statistics.pvariance(WordDiffList)
+    return
+
 
 #test
 
@@ -31,4 +43,4 @@ randSentenceTokens = ['Ihr', 'Haupt', 'verdunkelte', 'die', 'Ampel', ',', 'so', 
 print(randSentenceTokens)
 print("Sentence length: " + str(getSentenceLength(randSentenceTokens)))
 
-print(getPosRank(randSentenceTokens))
+print(getWordDifficulty(randSentenceTokens))

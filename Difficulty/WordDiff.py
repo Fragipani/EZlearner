@@ -1,24 +1,29 @@
-
+import pickle
 
 def CalcWordDiff (input_word):
     #Rating per category from 1(easy) to 5 (hard)
 
     #category word length (harder: longer words)
-    result_word_length = word_length(input_word)
-    print("Resultat Wortlaenge: " + str(result_word_length))
+    #result_word_length = word_length(input_word)
+    #print("Resultat Wortlaenge: " + str(result_word_length))
     #category letter combination (harder: word uses 'xy' or 'sch/ch')
-    result_letter_combination = letter_combination(input_word)
-    print("Resultat Buchstabenkombinationen: " + str(result_letter_combination))
+    #result_letter_combination = letter_combination(input_word)
+    #print("Resultat Buchstabenkombinationen: " + str(result_letter_combination))
 
     # Calculating overall score
-    score = result_word_length+\
-            result_letter_combination
+    score = getword_length(input_word)+\
+            getletter_combination(input_word)+\
+            getNumberOfDifferentLetters(input_word)+\
+            getNumberOfRepeatingLetters(input_word)+\
+            getNumberOfRareLetters(input_word)+\
+            getRatioVowelsConsonants(input_word)+\
+            getFreqDistrofWordinCorpus(input_word)
 
     return score;
 
 
 
-def letter_combination (input_word):
+def getletter_combination (input_word):
     input_word = input_word.lower()
     occurance = 0
     wl = len(input_word)
@@ -43,7 +48,7 @@ def letter_combination (input_word):
 
 
 
-def word_length (input_word):
+def getword_length (input_word):
     wl = len(input_word)
     if wl > 25:
         calc_value = 5
@@ -137,7 +142,7 @@ def getRatioVowelsConsonants(input_word):
 
     return calc_value
 
-def FreqDistrofWordinCorpus (input_word):
+def getFreqDistrofWordinCorpus (input_word):
     rank = 0
     freqdistr = pickle.load(open("../ressources/freqdistr.pickle", "rb"))
     for index, item in enumerate(freqdistr.most_common()):
