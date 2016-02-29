@@ -1,6 +1,4 @@
 import pickle, os
-from Difficulty.WordDiff import calcWordDiff
-from Difficulty.SentenceDiff import calcSentenceDiff
 from Difficulty.TextDiff import calcTextDiff
 from readabilityIndex.ReadabilityTool import ReadabilityTool
 
