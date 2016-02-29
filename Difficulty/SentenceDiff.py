@@ -113,11 +113,11 @@ def getWordDifficulty (sentence):
 # randSentence = sentence_tokens[randint(0,len(sentence_tokens))]
 # randSentenceTokens = nltk.word_tokenize(randSentence, language='german')
 
-randSentenceTokens = ['Ihr', 'Haupt', 'verdunkelte', 'die', 'Ampel', ',', 'so', 'daß', 'ihre', 'Gestalt', 'in', 'magischen', 'Lichträndern', 'glomm', '.']
+#randSentenceTokens = ['Ihr', 'Haupt', 'verdunkelte', 'die', 'Ampel', ',', 'so', 'daß', 'ihre', 'Gestalt', 'in', 'magischen', 'Lichträndern', 'glomm', '.']
 #randSentenceTokens = ['Er', 'hat', 'das', 'mit', '"', 'I', 'love', 'you', '"', 'übersetzt']
 #print(randSentenceTokens)
 #print("Sentence length: " + str(getSentenceLength(randSentenceTokens)))
 
 #print(getWordDifficulty(randSentenceTokens))
 #print(getPosRank(randSentenceTokens))
-print("Insgesamter Score:"+str(calcSentenceDiff(randSentenceTokens)))
+#print("Insgesamter Score:"+str(calcSentenceDiff(randSentenceTokens)))
