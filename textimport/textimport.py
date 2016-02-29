@@ -1,7 +1,7 @@
 import nltk, pickle
 
 #Import from txt file
-f = open("../ressources/reiseberichtIndien.txt")
+f = open("../ressources/tisch.txt")
 raw_text = f.read()
 
 # create new tokens from import and append these tokens to existing token list
