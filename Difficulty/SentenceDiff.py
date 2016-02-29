@@ -1,10 +1,12 @@
 import nltk, pickle, os, statistics
 from random import randint
-from Difficulty.WordDiff import CalcWordDiff
+from Difficulty.WordDiff import calcWordDiff
 from nltk.tag.stanford import StanfordPOSTagger
 
-os.environ['CLASSPATH'] = '../ressources/standforPOS/stanford-postagger.jar'
-os.environ['STANFORD_MODELS'] = '../ressources/standforPOS/models'
+projectRoot = os.path.dirname(os.path.dirname(__file__))
+
+os.environ['CLASSPATH'] = projectRoot + '/ressources/standforPOS/stanford-postagger.jar'
+os.environ['STANFORD_MODELS'] = projectRoot + '/ressources/standforPOS/models'
 
 st = StanfordPOSTagger('german-hgc.tagger')
 
@@ -24,7 +26,7 @@ def getPosRank(sentence):
 def getWordDifficulty (sentenceTokens):
     WordDiffList = list()
     for item in sentenceTokens:
-        WordDiffList.append(CalcWordDiff(item))
+        WordDiffList.append(calcWordDiff(item))
     sum(WordDiffList)
     statistics.mean(WordDiffList)
     statistics.pstdev(WordDiffList)

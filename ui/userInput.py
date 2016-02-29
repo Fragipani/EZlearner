@@ -32,9 +32,9 @@ text = raw_text[start_bookmark:end_bookmark]
 ##############################
 
 tokens = nltk.word_tokenize(text, language='german')
-print(tokens)
+#print(tokens)
 sentence_tokens = nltk.sent_tokenize(text, language='german')
-print (sentence_tokens)
+#print (sentence_tokens)
 
 # Auswahl eines zufälligen Übungssatzes
 randSentence = sentence_tokens[randint(0,len(sentence_tokens))]
@@ -42,7 +42,7 @@ randSentenceTokens = nltk.word_tokenize(randSentence, language='german')
 
 # Auswahl des zu trainierenden Worttyps
 pos_sentence = st.tag(randSentence.split())
-print(pos_sentence)
+#print(pos_sentence)
 response = input("Welche Wortart wollen Sie trainieren? (Verb, Nomen, Adjektiv, Artikel)")
 if response == "Verb":
  picked_wordtype= "VAFIN"

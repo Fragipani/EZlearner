@@ -1,5 +1,5 @@
-def CalcTextDiff (Text):
-    return
+def calcTextDiff (Text):
+    return 10
 
 
 # interessanter link https://de.wikipedia.org/wiki/Lesbarkeitsindex

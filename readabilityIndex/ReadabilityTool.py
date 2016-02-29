@@ -119,15 +119,24 @@ class ReadabilityTool:
         start_bookmark = raw_text.find("Erstes Kapitel")
         end_bookmark = raw_text.rfind("Im Verlag von R")
         text = raw_text[start_bookmark:end_bookmark]
-
-
         self.__analyzeText(text)
         self.getReportAll(text)
     demo = classmethod(demo)
 
 
+    def getIndex(self, text):
+        self = ReadabilityTool()
+        self.__analyzeText(text)
+        self.getReportAll(text)
+    getIndex = classmethod(getIndex)
+
+
+
 def demo():
     ReadabilityTool.demo()
+
+def getIndex(text):
+    ReadabilityTool.getIndex(text)
 
 if __name__ == "__main__":
     ReadabilityTool.demo()

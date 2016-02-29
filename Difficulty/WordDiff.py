@@ -1,6 +1,8 @@
-import pickle
+import os, pickle
 
-def CalcWordDiff (input_word):
+projectRoot = os.path.dirname(os.path.dirname(__file__))
+
+def calcWordDiff (input_word):
     #Rating per category from 1(easy) to 5 (hard)
 
     #category word length (harder: longer words)
@@ -144,7 +146,7 @@ def getRatioVowelsConsonants(input_word):
 
 def getFreqDistrofWordinCorpus (input_word):
     rank = 0
-    freqdistr = pickle.load(open("../ressources/freqdistr.pickle", "rb"))
+    freqdistr = pickle.load(open(projectRoot + "/ressources/freqdistr.pickle", "rb"))
     for index, item in enumerate(freqdistr.most_common()):
         if item[0] == input_word:
             rank = index+1
