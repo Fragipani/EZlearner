@@ -1,4 +1,4 @@
-from readabilityIndex.textanalyzer import *
+from readabilityIndex.Textanalyzer import *
 import math
 
 # http://web.mit.edu/6.863/spring2010/python/nltk_contrib/readability/readabilitytests.py

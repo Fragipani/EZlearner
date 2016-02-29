@@ -11,11 +11,24 @@ os.environ['STANFORD_MODELS'] = projectRoot + '/ressources/standforPOS/models'
 st = StanfordPOSTagger('german-hgc.tagger')
 
 def calcSentenceDiff (Sentence):
-    return
+    score = (getSentenceLength(Sentence)+\
+            getPosRank(Sentence)+\
+            getWordDifficulty(Sentence))/3
+    return score
 
 def getSentenceLength(sentenceTokens):
     #Todo: remove stopwords??
-    return len(sentenceTokens)
+    if len(sentenceTokens) >= 30:
+        calc_value = 5
+    elif len(sentenceTokens) >= 20:
+        calc_value = 4
+    elif len(sentenceTokens) >= 10:
+        calc_value = 3
+    elif len(sentenceTokens) >= 5:
+        calc_value = 2
+    else:
+        calc_value = 1
+    return calc_value
 
 def getPosRank(sentence):
     # Definition of POS Container
@@ -55,7 +68,6 @@ def getPosRank(sentence):
     propercent = pro / len(pos_sentence)
     verpercent = ver / len(pos_sentence)
     weipercent = 1 - adjpercent - prapercent - nompercent - propercent - verpercent
-    print(adjpercent, prapercent, nompercent, propercent, verpercent, weipercent)
 
     #Compare sentence with preset values to indicate if this is a not usual sentence
     deviation=0
@@ -85,15 +97,14 @@ def getPosRank(sentence):
 
     return calc_value
 
-def getWordDifficulty (sentenceTokens):
+def getWordDifficulty (sentence):
     WordDiffList = list()
-    for item in sentenceTokens:
+    for item in sentence:
         WordDiffList.append(calcWordDiff(item))
     sum(WordDiffList)
-    statistics.mean(WordDiffList)
-    statistics.pstdev(WordDiffList)
-    statistics.pvariance(WordDiffList)
-    return
+    #statistics.pstdev(WordDiffList)
+    #statistics.pvariance(WordDiffList)
+    return statistics.mean(WordDiffList)
 
 
 #test
@@ -108,4 +119,5 @@ randSentenceTokens = ['Ihr', 'Haupt', 'verdunkelte', 'die', 'Ampel', ',', 'so', 
 #print("Sentence length: " + str(getSentenceLength(randSentenceTokens)))
 
 #print(getWordDifficulty(randSentenceTokens))
-print(getPosRank(randSentenceTokens))
+#print(getPosRank(randSentenceTokens))
+print("Insgesamter Score:"+str(calcSentenceDiff(randSentenceTokens)))

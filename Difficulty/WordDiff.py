@@ -13,13 +13,14 @@ def calcWordDiff (input_word):
     #print("Resultat Buchstabenkombinationen: " + str(result_letter_combination))
 
     # Calculating overall score
-    score = getword_length(input_word)+\
+
+    score = (getword_length(input_word)+\
             getletter_combination(input_word)+\
             getNumberOfDifferentLetters(input_word)+\
             getNumberOfRepeatingLetters(input_word)+\
             getNumberOfRareLetters(input_word)+\
             getRatioVowelsConsonants(input_word)+\
-            getFreqDistrofWordinCorpus(input_word)
+            getFreqDistrofWordinCorpus(input_word))/7
 
     return score;
 
