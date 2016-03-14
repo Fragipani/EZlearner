@@ -14,8 +14,7 @@ class Main:
 print("Willkommen bei EZLearner! Berechnen Sie die Schwierigkeit eines Textes.")
 print("1: Eigenen Text eingeben")
 print("2: Bestehenden Text analysieren")
-print("3: Neuen Text hochladen")
-print("4: Beenden")
+print("3: Beenden")
 response = input("Auswahl:")
 
 main = Main()
@@ -30,9 +29,6 @@ elif response == "2":
     main.printIndex(newText)
     #Todo: Auswahl eines bestehenden Texts
 elif response == "3":
-    newText = input()
-    #Todo: Auswahl eines bestehenden Texts
-elif response == "4":
     print("Auf Wiedersehen")
     #Todo: Nichts machen. Einfach beenden
 else:
