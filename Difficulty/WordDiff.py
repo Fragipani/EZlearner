@@ -151,17 +151,17 @@ def getFreqDistrofWordinCorpus (input_word):
     for index, item in enumerate(freqdistr.most_common()):
         if item[0] == input_word:
             rank = index+1
-
-    if rank > (len(freqdistr)*0.8):
-        calc_value = 5
-    elif rank > (len(freqdistr)*0.6):
-        calc_value = 4
-    elif rank > (len(freqdistr)*0.4):
-        calc_value = 3
-    elif rank > (len(freqdistr)*0.2):
-        calc_value = 2
-    else:
+    if rank==0: rank=len(freqdistr)+1
+    if rank < (len(freqdistr)*0.2):
         calc_value = 1
+    elif rank < (len(freqdistr)*0.4):
+        calc_value = 2
+    elif rank < (len(freqdistr)*0.6):
+        calc_value = 3
+    elif rank < (len(freqdistr)*0.8):
+        calc_value = 4
+    else:
+        calc_value = 5
     return calc_value
 
 
@@ -178,4 +178,4 @@ def getFreqDistrofWordinCorpus (input_word):
 #
 # print("Difficulty: ratio vowels/consonants: " + str(getRatioVowelsConsonants("Xylophon")))
 #
-#print("Difficulty: # word in corpus: " + str(FreqDistrofWordinCorpus("und")))
+#print("Difficulty: # word in corpus: " + str(getFreqDistrofWordinCorpus("Kokosnuß")))
