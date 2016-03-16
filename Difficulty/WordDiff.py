@@ -14,13 +14,13 @@ def calcWordDiff (input_word):
 
     # Calculating overall score
 
-    score = (getword_length(input_word)+\
-            getletter_combination(input_word)+\
-            getNumberOfDifferentLetters(input_word)+\
-            getNumberOfRepeatingLetters(input_word)+\
-            getNumberOfRareLetters(input_word)+\
-            getRatioVowelsConsonants(input_word)+\
-            getFreqDistrofWordinCorpus(input_word))/7
+    score = (10*getword_length(input_word)+\
+            4*getletter_combination(input_word)+\
+            2*getNumberOfDifferentLetters(input_word)+\
+            1*getNumberOfRepeatingLetters(input_word)+\
+            6*getNumberOfRareLetters(input_word)+\
+            1*getRatioVowelsConsonants(input_word)+\
+            1*getFreqDistrofWordinCorpus(input_word))/25
 
     return score;
 
@@ -53,11 +53,11 @@ def getletter_combination (input_word):
 
 def getword_length (input_word):
     wl = len(input_word)
-    if wl > 25:
+    if wl > 10:
         calc_value = 5
-    elif wl > 15:
+    elif wl > 8:
         calc_value = 4
-    elif wl > 9:
+    elif wl > 6:
         calc_value = 3
     elif wl > 4:
         calc_value = 2
@@ -114,11 +114,11 @@ def getNumberOfRareLetters(input_word):
     elif count >= 3:
         calc_value = 4
     elif count >= 2:
-        calc_value = 3
-    elif count == 1:
         calc_value = 2
-    elif count == 0:
+    elif count == 1:
         calc_value = 1
+    elif count == 0:
+        calc_value = 0
 
     return calc_value
 

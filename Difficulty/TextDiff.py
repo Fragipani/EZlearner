@@ -5,6 +5,7 @@ def calcTextDiff (text):
 
     sentDifficulty = 0
     for sent in sentence_tokens:
+        print(sent)
         sentDifficulty += diff.calcSentenceDiff(sent)
     return sentDifficulty / len(sentence_tokens)
 

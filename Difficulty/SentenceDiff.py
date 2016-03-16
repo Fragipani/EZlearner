@@ -98,13 +98,23 @@ def getPosRank(sentence):
     return calc_value
 
 def getWordDifficulty (sentence):
-    WordDiffList = list()
-    for item in sentence:
-        WordDiffList.append(calcWordDiff(item))
-    sum(WordDiffList)
-    #statistics.pstdev(WordDiffList)
-    #statistics.pvariance(WordDiffList)
-    return statistics.mean(WordDiffList)
+    words = nltk.word_tokenize(sentence, language='german')
+    easyList = list()
+    middelList = list()
+    hardList = list()
+    completeList = list()
+    for item in words:
+        score = calcWordDiff(item)
+        completeList.append(score)
+        if(score<2): easyList.append(score)
+        elif(score<=2.5): middelList.append(score)
+        else: hardList.append(score)
+
+    if(len(hardList)/len(words) > 0.1): result = statistics.mean(hardList)
+    else: result = statistics.mean(completeList)
+
+    print("sent: " + str(result))
+    return result
 
 
 #test
