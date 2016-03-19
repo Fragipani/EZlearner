@@ -93,6 +93,8 @@ def getNumberOfRepeatingLetters(input_word):
                 count+=1
     if count >= 5:
         calc_value = 5
+    elif count >= 4:
+        calc_value = 4
     elif count >= 3:
         calc_value = 3
     elif count >= 1:
@@ -168,7 +170,7 @@ def getFreqDistrofWordinCorpus (input_word):
 
 
 #test
-#print("overall Score: " + str(CalcWordDiff("Xylophon")))
+#print("overall Score: " + str(calcWordDiff("glyphosat")))
 #
 # print("Difficulty: different letters: " + str(getNumberOfDifferentLetters("Xylophon")))
 #

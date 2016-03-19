@@ -98,7 +98,10 @@ def getPosRank(sentence):
     return calc_value
 
 def getWordDifficulty (sentence):
-    words = nltk.word_tokenize(sentence, language='german')
+    # satzzeichen?
+    raw_words = nltk.word_tokenize(sentence, language='german')
+    del_list = [',','.',':',';','!','?']
+    words = [token for token in raw_words if token not in del_list]
     easyList = list()
     middelList = list()
     hardList = list()
@@ -110,24 +113,18 @@ def getWordDifficulty (sentence):
         elif(score<=2.5): middelList.append(score)
         else: hardList.append(score)
 
-    if(len(hardList)/len(words) > 0.1): result = statistics.mean(hardList)
-    else: result = statistics.mean(completeList)
+    #if(len(hardList)/len(words) > 0.1): result = statistics.mean(hardList)
+    #else: result = statistics.mean(completeList)
+
+    if len(hardList) >= 4:
+        result = 5
+    elif len(hardList) >= 3:
+        result = 4
+    elif len(hardList) >= 2:
+        result = 3
+    elif len(hardList) >= 1:
+        result = 2
+    else: result = 1
 
     print("sent: " + str(result))
     return result
-
-
-#test
-
-# sentence_tokens = pickle.load(open("../ressources/sentenceTokens.pickle", "rb"))
-# randSentence = sentence_tokens[randint(0,len(sentence_tokens))]
-# randSentenceTokens = nltk.word_tokenize(randSentence, language='german')
-
-#randSentenceTokens = ['Ihr', 'Haupt', 'verdunkelte', 'die', 'Ampel', ',', 'so', 'daß', 'ihre', 'Gestalt', 'in', 'magischen', 'Lichträndern', 'glomm', '.']
-#randSentenceTokens = ['Er', 'hat', 'das', 'mit', '"', 'I', 'love', 'you', '"', 'übersetzt']
-#print(randSentenceTokens)
-#print("Sentence length: " + str(getSentenceLength(randSentenceTokens)))
-
-#print(getWordDifficulty(randSentenceTokens))
-#print(getPosRank(randSentenceTokens))
-#print("Insgesamter Score:"+str(calcSentenceDiff(randSentenceTokens)))
