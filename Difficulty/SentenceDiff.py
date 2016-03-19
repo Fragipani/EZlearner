@@ -10,10 +10,15 @@ os.environ['STANFORD_MODELS'] = projectRoot + '/ressources/standforPOS/models'
 
 st = StanfordPOSTagger('german-hgc.tagger')
 
-def calcSentenceDiff (Sentence):
-    score = (getSentenceLength(Sentence)+\
-            getPosRank(Sentence)+\
-            getWordDifficulty(Sentence))/3
+def calcSentenceDiff (sentence):
+    raw_words = nltk.word_tokenize(sentence, language='german')
+    del_list = [',','.',':',';','!','?']
+    words = [token for token in raw_words if token not in del_list]
+
+    score = (2*getSentenceLength(words)+\
+            1*getPosRank(sentence)+\
+            3*getWordDifficulty(words))/6
+
     return score
 
 def getSentenceLength(sentenceTokens):
@@ -99,14 +104,12 @@ def getPosRank(sentence):
 
 def getWordDifficulty (sentence):
     # satzzeichen?
-    raw_words = nltk.word_tokenize(sentence, language='german')
-    del_list = [',','.',':',';','!','?']
-    words = [token for token in raw_words if token not in del_list]
+
     easyList = list()
     middelList = list()
     hardList = list()
     completeList = list()
-    for item in words:
+    for item in sentence:
         score = calcWordDiff(item)
         completeList.append(score)
         if(score<2): easyList.append(score)
@@ -126,5 +129,4 @@ def getWordDifficulty (sentence):
         result = 2
     else: result = 1
 
-    print("sent: " + str(result))
     return result

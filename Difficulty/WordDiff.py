@@ -181,3 +181,5 @@ def getFreqDistrofWordinCorpus (input_word):
 # print("Difficulty: ratio vowels/consonants: " + str(getRatioVowelsConsonants("Xylophon")))
 #
 #print("Difficulty: # word in corpus: " + str(getFreqDistrofWordinCorpus("Kokosnuß")))
+
+#print("repeat: " + str(getNumberOfRepeatingLetters("Baum")))
