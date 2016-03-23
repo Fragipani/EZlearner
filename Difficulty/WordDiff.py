@@ -1,4 +1,4 @@
-import os, pickle
+import os, pickle, csv
 
 projectRoot = os.path.dirname(os.path.dirname(__file__))
 
@@ -22,8 +22,20 @@ def calcWordDiff (input_word):
             1*getRatioVowelsConsonants(input_word)+\
             1*getFreqDistrofWordinCorpus(input_word))/25
 
-    return score;
+    with open(projectRoot + '//ressources/wordDiff.csv', "a") as csvfile:
 
+        writer = csv.writer(csvfile, lineterminator='\n')
+        writer.writerow([str(getword_length(input_word)),
+                         str(getletter_combination(input_word)),
+                         str(getNumberOfDifferentLetters(input_word)),
+                         str(getNumberOfRepeatingLetters(input_word)),
+                         str(getNumberOfRareLetters(input_word)),
+                         str(getRatioVowelsConsonants(input_word)),
+                         str(getFreqDistrofWordinCorpus(input_word)),
+                         str(score)])
+
+
+    return score;
 
 
 def getletter_combination (input_word):

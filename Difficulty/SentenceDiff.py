@@ -7,7 +7,7 @@ projectRoot = os.path.dirname(os.path.dirname(__file__))
 
 os.environ['CLASSPATH'] = projectRoot + '/ressources/standforPOS/stanford-postagger.jar'
 os.environ['STANFORD_MODELS'] = projectRoot + '/ressources/standforPOS/models'
-
+os.environ['JAVA_HOME'] = "C:\\Program Files\\Java\\jdk1.8.0_66\\bin"
 st = StanfordPOSTagger('german-hgc.tagger')
 
 def calcSentenceDiff (sentence):
