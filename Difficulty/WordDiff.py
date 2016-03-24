@@ -128,11 +128,11 @@ def getNumberOfRareLetters(input_word):
     elif count >= 3:
         calc_value = 4
     elif count >= 2:
-        calc_value = 2
+        calc_value = 3
     elif count == 1:
-        calc_value = 1
+        calc_value = 2
     elif count == 0:
-        calc_value = 0
+        calc_value = 1
 
     return calc_value
 
